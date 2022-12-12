@@ -18,7 +18,7 @@ int main(int argc, char** argv) {
     while (command != "exit") {
         std::getline(std::cin, command);
         if (command != "exit") {
-            s.sendAllClients(util::fmt("HELLO CLIENTS! HERE IS MY MESSAGE: {}", command));
+            s.sendAllClients(command);
         }
     }
 
