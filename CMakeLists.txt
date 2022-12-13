@@ -5,6 +5,8 @@ project(Chatroom VERSION 1.0)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
+set(CMAKE_BUILD_TYPE Debug)
+set(CMAKE_XCODE_ATTRIBUTE_DEBUG_INFORMATION_FORMAT "dwarf-with-dsym")
 
 configure_file(src/ChatroomConfig.h.in ChatroomConfig.h)
 include_directories(${CMAKE_CURRENT_BINARY_DIR})

@@ -22,10 +22,14 @@ int main(int argc, char** argv) {
     util::client c("127.0.0.1", 5001, &onEvent, logger);
 
     std::string command = "";
-    while (command != "exit" && c.alive()) {
+    while (command != "exit") {
         std::getline(std::cin, command);
 
-        if (command != "exit") {
+        if (command == "reconnect") {
+            c.reconnect();
+        } else if (command == "disconnect") {
+            c.disconnect();
+        } else if (command != "exit") {
             c.sendServer(command);
         }
     }
