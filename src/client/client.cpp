@@ -5,15 +5,8 @@
 #include <logger_console_sink.hpp>
 #include <csignal>
 
-bool onFinishListen(util::client_finished_listen_event& t_e) {
-    return false;
-}
-
 void onEvent(util::event<util::CLIENT_EVENTS>& t_event) {
-    // std::cout << t_event.toString() << std::endl; 
-
     util::event_dispatcher<util::CLIENT_EVENTS> dispatcher(t_event);
-    dispatcher.dispatch<util::client_finished_listen_event>(&onFinishListen);
 }
 
 int main(int argc, char** argv) {
