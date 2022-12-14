@@ -60,6 +60,7 @@ int main(int argc, char** argv) {
     util::logger serverLogger;
     // * give the logger a console sink
     serverLogger.addSink<util::logger_console_sink>("server_console_logger");
+    serverLogger.setSinkLogLevel("server_console_logger", util::LOGGER_SINK_LEVEL::INFO);
 
     // * create the server
     s = new util::server(5001, util::SERVER_METHOD::TCP, &onEvent, serverLogger);
