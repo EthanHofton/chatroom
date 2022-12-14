@@ -9,7 +9,7 @@ util::server *s;
 
 bool handleRecv(util::server_read_event& t_e) {
     std::string clientId = t_e.getClientId();
-    std::string message = util::fmt("client ({}) said: {}", clientId, std::string(t_e.getClientBuff(), t_e.getBuffSize()));
+    std::string message = util::fmt("client {}: {}", clientId, std::string(t_e.getClientBuff(), t_e.getBuffSize()));
 
     for (auto& client : s->getClientMap()) {
         if (client.first != clientId) {
@@ -42,6 +42,9 @@ bool handleClientConnect(util::server_client_connect_event& t_e) {
             s->sendClient(client.first, message); 
         }
     }
+
+    std::string welcomeMessage = util::fmt("welcome ({}), there are currently {} other clients in the chatroom", clientId, s->getClientMap().size() - 1);
+    s->sendClient(clientId, welcomeMessage);
 
     return true;
 }
